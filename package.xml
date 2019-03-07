@@ -54,8 +54,8 @@
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
   <build_depend>tf</build_depend>
-  <build_depend>velodyne_pointcloud</build_depend>
   <build_depend>velodyne</build_depend>
+  <build_depend>navigation</build_depend>
   <build_export_depend>imu_vn_100</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
@@ -64,8 +64,10 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>tf</exec_depend>
-  <exec_depend>velodyne_pointcloud</exec_depend>
-
+  <depend>velodyne_pointcloud</depend>
+  <depend>slam_gmapping</depend>
+  <test_depend>rviz</test_depend>
+  <test_depend>rqt_graph</test_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
