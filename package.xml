@@ -65,7 +65,7 @@
   <exec_depend>tf</exec_depend>
   <depend>velodyne_pointcloud</depend>
   <depend>robot_pose_ekf</depend>
-  <test_depend>gmapping</test_depend>
+  <depend>gmapping</depend>
   <test_depend>rviz</test_depend>
   <test_depend>rqt_graph</test_depend>
 
