@@ -1,0 +1,39 @@
+<launch>
+	<!-- Target Frame Launch -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="world_frame" args="0 0 0 0 0 0 1 world base_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_interface" args="0 0 0 0 0 0 1 base_link velodyne" />
+	<node pkg="tf2_ros" type="static_transform_publisher" name="odom_interface" args="0 0 0 0 0 0 1 base_link map" />
+
+	<!-- EKF -->
+	<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="output_frame" value="odom"/>
+    <param name="freq" value="30.0"/>
+    <param name="sensor_timeout" value="1.0"/>
+    <param name="odom_used" value="true"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="false"/>
+    <param name="debug" value="false"/>
+    <param name="self_diagnose" value="false"/>
+    <param name="gps_used" value="false"/>
+  </node>
+
+	<!-- imu-vn100 launch -->
+	  <include file="$(find imu_vn_100)/launch/vn_100_cont.launch" />
+
+	<!-- Velodyne VLP16 Puck Launch -->
+	  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+
+	<!-- SLAM gmapping -->
+	  <node name="slam_gmapping" type="slam_gmapping" pkg="gmapping" output="screen">
+	  <param name="scan" value="/scan"/>
+	  <param name="_linearUpdate" value="0.0"/>
+	  <param name="_angularUpdate" value="0.0"/>
+	  </node>
+
+	<!-- Topic subscriptions/publications -->
+	  <!-- <node pkg="rostopic" type="rostopic" name="LaserScan" args="pub {pub args}"/> What is pub??? Change this-->
+
+	<!-- Debugging Utilities -->
+	  <node pkg="rqt_graph" type="rqt_graph" name="rqt_graph"/>
+	  <node pkg="rviz" type="rviz" name="rviz"/>
+</launch>
