@@ -200,4 +200,10 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(puck_laser_listener nodes/puck_laser_listener.cpp)
+add_executable(vector_to_odom src/vector_to_odom.cpp)
+add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+add_executable(tf_listener src/tf_listener.cpp)
 target_link_libraries(puck_laser_listener ${catkin_LIBRARIES})
+target_link_libraries(vector_to_odom ${catkin_LIBRARIES})
+target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
+target_link_libraries(tf_listener ${catkin_LIBRARIES})

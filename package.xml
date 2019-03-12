@@ -66,6 +66,7 @@
   <depend>velodyne_pointcloud</depend>
   <depend>robot_pose_ekf</depend>
   <depend>gmapping</depend>
+  <depend>nav_msgs</depend>
   <test_depend>rviz</test_depend>
   <test_depend>rqt_graph</test_depend>
 

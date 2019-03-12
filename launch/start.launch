@@ -1,8 +1,7 @@
 <launch>
 	<!-- Target Frame Launch -->
-	<node pkg="tf2_ros" type="static_transform_publisher" name="world_frame" args="0 0 0 0 0 0 1 world base_link" />
-    <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_interface" args="0 0 0 0 0 0 1 base_link velodyne" />
-	<node pkg="tf2_ros" type="static_transform_publisher" name="odom_interface" args="0 0 0 0 0 0 1 base_link map" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_interface" args="0 0 0 0 0 0 1 velodyne base_link"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map_frame" args="0 0 0 0 0 0 1 base_link map" />
 
 	<!-- EKF -->
 	<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
@@ -26,8 +25,8 @@
 	<!-- SLAM gmapping -->
 	  <node name="slam_gmapping" type="slam_gmapping" pkg="gmapping" output="screen">
 	  <param name="scan" value="/scan"/>
-	  <param name="_linearUpdate" value="0.0"/>
-	  <param name="_angularUpdate" value="0.0"/>
+	  <param name="linearUpdate" value="0.0"/>
+	  <param name="angularUpdate" value="0.0"/>
 	  </node>
 
 	<!-- Topic subscriptions/publications -->
