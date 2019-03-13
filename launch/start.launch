@@ -2,7 +2,9 @@
 	<!-- Target Frame Launch -->
     <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_interface" args="0 0 0 0 0 0 1 velodyne base_link"/>
     <node pkg="tf2_ros" type="static_transform_publisher" name="map_frame" args="0 0 0 0 0 0 1 base_link map" />
-    <node pkg="tf2_ros" type="static_transform_publisher" name="imu_frame" args="0 0 0 0 0 0 1 base_link imu" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="imu_frame" args="0 0 0 0 0 0 1 velodyne imu" />
+
+    <remap from="imu_data" to="imu/imu"/>
 
 	<!-- EKF -->
 	<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
