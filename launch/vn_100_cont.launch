@@ -4,7 +4,7 @@
 
     <arg name="port" default="/dev/ttyUSB0" />
     <arg name="frame_id" default="$(arg imu)"/>
-    <arg name="baudrate" default="9600"/>
+    <arg name="baudrate" default="921600"/>
     <arg name="imu_rate" default="100"/>
 
     <!-- Sync out settings -->
