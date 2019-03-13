@@ -18,15 +18,16 @@ class RPY:
 
         def on_rpy(self, rpy):
             self.vector = rpy.vector
+            self.timestamp = rpy.header.stamp
             # first, we'll publish the transform over tf
             odom_broadcaster.sendTransform(
                 (self.vector.x, self.vector.y, 0.),
                 odom_quat,
-                current_time,
+                self.timestamp,
                 "base_link",
                 "odom"
-            )
-            print self.vector            
+            )            
+            print self.timestamp
 
 if __name__ == '__main__':
 
@@ -34,7 +35,7 @@ if __name__ == '__main__':
 
     odom_pub = rospy.Publisher("odom", Odometry, queue_size=50)
     odom_broadcaster = tf.TransformBroadcaster()
-    rpy = RPY("imu/rpy")
+    rpy = RPY()
 
     x = 0.0
     y = 0.0
@@ -46,6 +47,7 @@ if __name__ == '__main__':
 
     current_time = rospy.Time.now()
     last_time = rospy.Time.now()
+    print type(current_time)
 
     r = rospy.Rate(1.0)
     while not rospy.is_shutdown():
