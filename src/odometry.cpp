@@ -30,6 +30,7 @@
 * @brief The documentation of this file is a responsibility of its current developer, Pedro Salvado.
 */
 
+#include <atlascar_base/odometry.h>
 #include <sensor_msgs/Imu.h>
 #include "geometry_msgs/Vector3Stamped.h"
 #include "geometry_msgs/QuaternionStamped.h"
@@ -48,18 +49,31 @@
 
 #define PFLN {printf("%s %d\n",__FILE__, __LINE__);}
 bool new_status_message;
+atlascar_base::AtlascarStatus base_status;
+atlascar_base::AtlascarVelocityStatus base_velocity;
 bool message_receive=false;
 bool bool_init=true;
 ros::Time t_i, t_i_1;
 int contador_=0,contador_1=0;
 
-void VelocityMessageHandler(const msg)
+void VelocityMessageHandler(const atlascar_base::AtlascarVelocityStatus& msg)
 {
-  print "Ok"
+	base_velocity=msg;
+       new_status_message=true;
+       if(bool_init)
+       {
+              t_i_1=msg.header.stamp;
+              t_i=msg.header.stamp;
+              bool_init=false;
+       }else
+       {
+              t_i_1=t_i;
+              t_i=msg.header.stamp;
+      }
 }
-void StatusMessageHandler(const msg)
+void StatusMessageHandler(const atlascar_base::AtlascarStatus& msg)
 {
-  print ""
+       base_status=msg;
 }
 
 int main(int argc, char** argv)
