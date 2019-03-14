@@ -9,7 +9,7 @@ import tf2_ros
 import tf2_geometry_msgs
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Header
-from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3, Vector3Stamped
+from geometry_msgs.msg import Point, Pose, PoseWithCovariance, Quaternion, Twist, Vector3, Vector3Stamped
 
 class RPY:
         def __init__(self, rpy_topic="imu/rpy"):
@@ -26,8 +26,7 @@ class RPY:
                 self.timestamp,
                 "base_link",
                 "odom"
-            )            
-            print self.timestamp
+            )
 
 if __name__ == '__main__':
 
@@ -44,6 +43,8 @@ if __name__ == '__main__':
     vx = 0.1
     vy = -0.1
     vth = 0.1
+
+    infinity = float('inf')
 
     current_time = rospy.Time.now()
     last_time = rospy.Time.now()
@@ -79,10 +80,24 @@ if __name__ == '__main__':
         odom.child_frame_id = "base_link"
         odom.twist.twist = Twist(Vector3(vx, vy, 0), Vector3(0, 0, vth))
 
-        # publish the message
-        odom_pub.publish(odom)
+        # fill covariance matrix
+        odom_covariance_len = len(odom.pose.covariance)
+        twist_covariance_len = len(odom.twist.covariance)
+        odom.pose.covariance = [0.1] * odom_covariance_len
+        odom.twist.covariance = [0.1] * twist_covariance_len
+
+        odom.pose.covariance[0] = 0.1
+        odom.pose.covariance[7] = 0.1
+        odom.pose.covariance[35] = 0.05
+        odom.pose.covariance[14] = infinity
+        odom.pose.covariance[21] = infinity
+        odom.pose.covariance[28] = infinity
 
         last_time = current_time
+
+        # publish the message
+        odom_pub.publish(odom)
+        print odom
         r.sleep()
 
     rospy.spin()
