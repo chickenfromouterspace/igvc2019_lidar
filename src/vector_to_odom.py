@@ -19,6 +19,7 @@ class RPY:
         def on_rpy(self, rpy):
             self.vector = rpy.vector
             self.timestamp = rpy.header.stamp
+            print(self.timestamp)
             # first, we'll publish the transform over tf
             odom_broadcaster.sendTransform(
                 (self.vector.x, self.vector.y, 0.),

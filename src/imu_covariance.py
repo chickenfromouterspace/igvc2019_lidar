@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import rospy
+import roslib
+import tf
 from sensor_msgs.msg import Imu
 from std_msgs.msg import Header
 from geometry_msgs.msg import Quaternion, Vector3
@@ -11,6 +13,7 @@ class IMU:
         def __init__(self, imu_topic=imu_topic):
             # Subscribe to the laser scan topic
             imu_sub = rospy.Subscriber(imu_topic, Imu, self.imu_loop)
+            self.tf_imu = tf.TransformBroadcaster()
             self.header = Header(0, rospy.Time.now(), "imu")
             self.orientation = Quaternion(0,0,0,0)
             self.angular_velocity = Vector3(0,0,0)
@@ -22,7 +25,11 @@ class IMU:
 	            self.orientation = imu.orientation
 	            self.angular_velocity = imu.angular_velocity
 	            self.linear_acceleration = imu.linear_acceleration
-
+	            self.tf_imu.sendTransform((self.orientation.x, self.orientation.y, 0), 
+	            					 tf.transformations.quaternion_from_euler(0, 0, self.orientation.z),
+	            					 rospy.Time.now(),
+	            					 "imu",
+	            					 "base_link")
 
 if __name__ == '__main__':
 	rospy.init_node('imu_covariance')
