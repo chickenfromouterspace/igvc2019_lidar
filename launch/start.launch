@@ -15,7 +15,7 @@
     <param name="output_frame" value="odom_combined"/>
     <param name="freq" value="30.0"/>
     <param name="sensor_timeout" value="1.0"/>
-    <param name="odom_used" value="true"/>
+    <param name="odom_used" value="false"/>
     <param name="imu_used" value="true"/>
     <param name="vo_used" value="false"/>
     <param name="debug" value="true"/>
@@ -31,9 +31,6 @@
 
 	<!-- Velodyne VLP16 Puck Launch -->
 		<include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
-
-	<!-- Vector to Odom -->
-		<node name="vector_odom" type="vector_to_odom.py" pkg="igvc2019_lidar"/>
 
 	<!-- SLAM gmapping -->
 		<node name="slam_gmapping" type="slam_gmapping" pkg="gmapping" output="screen">
