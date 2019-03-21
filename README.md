@@ -21,7 +21,7 @@ Uses ROS and depends on packages robot_pose_ekf from navigation, imu_vn_100, sla
 5. Install dependencies ```$ rosdep install igvc2019_lidar```
 	1. If this fails, take the following actions for each package not installed.
 	2. Follow Velodyne Puck tutorial at http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20Velodyne%20VLP16
-		1. As a warning, some IP configuration commands are incorrect. Ensure that your input and output ip addresses are the same.
+		1. As a warning, some IP configuration commands are incorrect. Ensure that your input and output ip addresses are the same. Refer to our [velodyne test procedure](https://github.com/chickenfromouterspace/igvc2019_lidar/blob/master/documentation/imu_test_procedure.md) for further details.
 	3. Copy imu vn 100 repository on your computer's catkin workspace source folder with
 		```
 		~/catkin_ws/src$ git clone https://github.com/KumarRobotics/imu_vn_100.git
