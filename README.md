@@ -10,6 +10,10 @@ Uses ROS and depends on packages robot_pose_ekf from navigation, imu_vn_100, sla
 	```
 	~/catkin_ws/src$ git clone https://github.com/chickenfromouterspace/igvc2019_lidar.git
 	```
+3. Copy imu vn 100 repository on your computer's catkin workspace source folder with
+	```
+	~/catkin_ws/src$ git clone https://github.com/KumarRobotics/imu_vn_100.git
+	```
 4. Go to your catkin workspace and make your packages with
 	```
 	~/catkin_ws$ catkin_make
