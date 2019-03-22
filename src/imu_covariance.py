@@ -26,7 +26,7 @@ class IMU:
 	            self.angular_velocity = imu.angular_velocity
 	            self.linear_acceleration = imu.linear_acceleration
 	            self.tf_imu.sendTransform((self.orientation.x, self.orientation.y, 0), 
-	            					 tf.transformations.quaternion_from_euler(0, 0, self.orientation.z),
+	            					 self.orientation,
 	            					 rospy.Time.now(),
 	            					 "imu",
 	            					 "odom_combined")
