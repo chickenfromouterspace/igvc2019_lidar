@@ -122,7 +122,6 @@ if __name__ == '__main__':
 
         # publish the message
         odom_pub.publish(odom)
-        print odom
         r.sleep()
 
     rospy.spin()
