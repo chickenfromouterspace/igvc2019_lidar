@@ -1,6 +1,6 @@
 ~~~
 RVIZ DISTANCE MEASUREMENTS (m)
-Real			RVIZ			diff 		Height* 		Real Length*
+Real			RVIZ			Diff 		Height* 		Real Length*
 1			1.004			0.004		-				-
 1.4224			1.57			0.1266		0.254			1.549
 1.6			1.38			0.095		-				-
@@ -13,7 +13,7 @@ Real			RVIZ			diff 		Height* 		Real Length*
 
 
 RVIZ Clearances (Diameter of cone of vision) (m)
-Distance 	Clearance (0.4 deg) 	Clearance(0.1 deg)
+Distance 		Clearance (0.4 deg) 		Clearance(0.1 deg)
 1			0.0140					0.0035
 2.5			0.0349					0.0087
 5			0.0698					0.0175
