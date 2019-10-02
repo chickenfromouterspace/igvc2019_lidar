@@ -1,3 +1,4 @@
+~~~
 RVIZ DISTANCE MEASUREMENTS (m)
 Real			RVIZ			diff 		Height* 		Real Length*
 1				1.004			0.004		-				-
@@ -17,3 +18,4 @@ Distance 	Clearance (0.4 deg) 	Clearance(0.1 deg)
 2.5			0.0349					0.0087
 5			0.0698					0.0175
 10			0.1396					0.0349
+~~~
