@@ -8,7 +8,6 @@ project(igvc2019_lidar)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  imu_vn_100
   roscpp
   rospy
   tf

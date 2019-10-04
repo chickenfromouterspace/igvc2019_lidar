@@ -23,6 +23,11 @@ class Lidar:
 		iterable = [np.array([i[0], i[1], i[2]]) for i in self.xyz_generator]
 		# Create a numpy array out of the iterable
 		self.points = np.array(iterable)
+		for j in range(0, len(self.points)):
+			x = self.points[j][0] * self.points[j][0]
+			y = self.points[j][1] * self.points[j][1]
+			z = self.points[j][2] * self.points[j][2]
+			print(math.sqrt(x + y + z))
 
 class Map:
 
