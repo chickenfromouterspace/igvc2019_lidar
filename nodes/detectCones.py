@@ -4,6 +4,7 @@
 # Jade Zsiros
 # Marcus Simmonds
 # Alexandra French
+# Jonathan Conrad
 # EGN4060C Final Project
 # Cylinder detection by random sample vote
 
