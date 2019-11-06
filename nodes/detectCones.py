@@ -194,7 +194,7 @@ class Lidar:
 							
 							# If there scan isn't consecutive & there arent 3 consecutive scans, set 
 							# counter to 0
-							if (currScan != tempScan && consScans < 3)
+							if (currScan != tempScan)
 								consScans = 0
 							# If the number of consecutive scans w/ buoy is 3, publish & reset
 							# num of buoy consecutive scans
