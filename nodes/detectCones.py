@@ -18,6 +18,9 @@ from sensor_msgs.msg import PointCloud2
 
 class Lidar:
 
+	# Scan counter
+	currScan = 0;
+	
 	def __init__(self, scan_topic="velodyne_points"):
 		# Subscribe to the laser scan topic
 		self.scan_sub = rospy.Subscriber(scan_topic, PointCloud2, self.on_scan)
@@ -25,7 +28,8 @@ class Lidar:
 		self.docka = 0
 		self.dockb = 0
 		self.dockmaxvotes = 0
-
+	
+	# This runs for every scan
 	def on_scan(self, cloud):
 		PointCloud2.angle_min = -1.5708
 		PointCloud2.angle_max = 1.5708
@@ -37,6 +41,8 @@ class Lidar:
 		self.points = np.array(iterable)
 		# Redisplay the window
 		glutPostRedisplay()
+		# Update the current scan counter
+		currScan += 1;
 
 	def initFun(self):
 		# Define clear color
@@ -76,9 +82,9 @@ class Lidar:
 
 		iter = 30
 
+		# This updates the vote count and the viable array
 		for i in range(iter):
 			votes = 0
-			numScans = 0
 			p1 = viable1[i]
 			p2 = viable1[i+1]
 
@@ -98,26 +104,30 @@ class Lidar:
 
 		k = 0
 		l = 0
+		
+		# We shouldn't need dock points
+		#dockpoints = np.empty([self.dockmaxvotes * 7, 3])
 
-		dockpoints = np.empty([self.dockmaxvotes * 7, 3])
-
+		# Shouldn't need to draw a dock line
 		# draw the dock line points to the screen
-		for i in viable1:
-			# check if point lies on the dock line, and draw it if it does
-			y2 = self.docka + (self.dockb * i[0])
-			if abs(y2 - i[1]) < 0.05:
-				glColor3f(255,0,0)
-				glVertex3f(i[0],i[1],0)
-				dockpoints[k] = i
-				k += 1
-			else:
-				# if point not on dock line, assign it to viable array, which is used to find buoys
-				viable[l] = i
-				l += 1
-
+		#for i in viable1:
+		#	# check if point lies on the dock line, and draw it if it does
+		#	y2 = self.docka + (self.dockb * i[0])
+		#	if abs(y2 - i[1]) < 0.05:
+		#		glColor3f(255,0,0)
+		#		glVertex3f(i[0],i[1],0)
+		#		dockpoints[k] = i
+		#		k += 1
+		
+		# Got rid of else
+		# if point not on dock line, assign it to viable array, which is used to find buoys
+		viable[l] = i
+		l += 1
+		
+		# No need to print the dock.
 		# print the number of votes for the biggest dock line
-		print("Maximum is:")
-		print(self.dockmaxvotes)
+		#print("Maximum is:")
+		#print(self.dockmaxvotes)
 
 
 
@@ -178,33 +188,44 @@ class Lidar:
 						if votes[i] >= 25:
 							glColor3f(0,0,255)
 							glVertex3f(j[0],j[1],0)
-							# If there is a buoy for 3 scans in a row
-							numScans += 1
-							if numScans == 3:
-								#publish
-								donothing=1
+							# If there is a buoy, update consecutive scans w/ buoy counter
+							consScans += 1
+							tempScan = currScan;
+							
+							# If there scan isn't consecutive & there arent 3 consecutive scans, set 
+							# counter to 0
+							if (currScan != tempScan && consScans < 3)
+								consScans = 0
+							# If the number of consecutive scans w/ buoy is 3, publish & reset
+							# num of buoy consecutive scans
+							if consScans == 3:
+								# Can add a publisher here
+								consScans = 0
+		# If scan count <= 30, reset scan count
 		if self.scancount <= 30:
-			self.findDockCenter(dockpoints)
+			# We probably won't need to find the dock center, since its not a boat
+			#self.findDockCenter(dockpoints)
 			self.scancount = 0
 
 # End display function
 		glEnd()
 		glFlush()
 
-	def findDockCenter(self, dockpoints):#s
-
-
-		xsum = 0
-		ysum = 0
-
-		for i in dockpoints:
-			xsum += i[0]
-			ysum += i[1]
-
-		xaverage = xsum / dockpoints.size
-		yaverage = ysum / dockpoints.size
-		print("X:", xaverage)
-		print("Y:", yaverage)
+	# We probably won't need the dock center
+	#def findDockCenter(self, dockpoints):#s
+	#
+	#
+	#	xsum = 0
+	#	ysum = 0
+	#
+	#	for i in dockpoints:
+	#		xsum += i[0]
+	#		ysum += i[1]
+	#
+	#	xaverage = xsum / dockpoints.size
+	#	yaverage = ysum / dockpoints.size
+	#	print("X:", xaverage)
+	#	print("Y:", yaverage)
 
 class Map:
 
