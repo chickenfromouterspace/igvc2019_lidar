@@ -1,4 +1,3 @@
-~~~
 Lidar inaccuracy from prior calibration ±0.08m
 
 
@@ -35,4 +34,3 @@ Descending order (Top-> Bottom). Top here is the open portion of the trash can.
 
 Obstacle diameter could be from 0.4163 to 0.5215
 Obstacle radius could be from 0.2082 to 0.2608
-~~~
