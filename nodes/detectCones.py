@@ -199,27 +199,38 @@ class Lidar:
 							# If the number of consecutive scans w/ buoy is 3, publish & reset
 							# num of buoy consecutive scans
 							if consScans == 3:
-								# Can add a publisher here
-								#put points in Point32[] 
+								# Publisher
+								# put points in Point32[] 
  
+								#  Adding all the point x,y,z coord for point1
 								#Point32 point1 = ros.Point32; 
 								#point1.x = A[0]
 								#point1.y = A[1]
 								#point1.z = A[2]
- 
+								
+ 								# Adding all the point x,y,z coord for point2
 								#Point32 point2 = ros.Point32;
 								#point2.x = B[0]
 								#point2.y = B[1]
 								#point2.z = B[2]
-
+								
+								# Adding all the point x,y,z coord for point3
 								#Point32 point3 = ros.Point32;
 								#point3.x = C[0]
 								#point3.y = C[1]
 								#point3.z = C[2]
 
-								#pointcloud.points = points
-
+								# Creating a point obj of type point32
 								#geometry_msgs/Point32[] points
+								
+								# Adding the points into the point object
+								#points[1] = point1
+								#points[2] = point2
+								#points[3] = point3
+								
+								# Add the points into a pointcloud
+								#pointcloud.points = points
+								
 								consScans = 0
 		# If scan count <= 30, reset scan count
 		if self.scancount <= 30:
