@@ -203,9 +203,9 @@ class Lidar:
 								#put points in Point32[] 
  
 								#Point32 point1 = ros.Point32; 
-								#point1.x = insert value here
-								#point1.y = insert value here
-								#point1.z =insert value here
+								#point1.x = A[0]
+								#point1.y = A[1]
+								#point1.z = A[2]
  
 								#Point32 point2 = ros.Point32;
 								#point2.x = insert value here
