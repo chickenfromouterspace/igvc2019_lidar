@@ -224,9 +224,9 @@ class Lidar:
 								#geometry_msgs/Point32[] points
 								
 								# Adding the points into the point object
-								#points[1] = point1
-								#points[2] = point2
-								#points[3] = point3
+								#points[0] = point1
+								#points[1] = point2
+								#points[2] = point3
 								
 								# Add the points into a pointcloud
 								#pointcloud.points = points
