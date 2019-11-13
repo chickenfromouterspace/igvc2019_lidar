@@ -208,14 +208,14 @@ class Lidar:
 								#point1.z = A[2]
  
 								#Point32 point2 = ros.Point32;
-								#point2.x = insert value here
-								#point2.y = insert value here 
-								#point2.z = insert value here
+								#point2.x = B[0]
+								#point2.y = B[1]
+								#point2.z = B[2]
 
 								#Point32 point3 = ros.Point32;
-								#point3.x = insert value here
-								#point3.y = insert value here
-								#point3.z = insert value here 
+								#point3.x = C[0]
+								#point3.y = C[1]
+								#point3.z = C[2]
 
 								#pointcloud.points = points
 
